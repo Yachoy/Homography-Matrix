@@ -40,6 +40,28 @@ class TableWidgetCopy(QTableWidget):
             mime_data.setText(copied_text)
             QApplication.instance().clipboard().setMimeData(mime_data)
 
+    def paste(self):
+        mime_data = QApplication.instance().clipboard().mimeData()
+        if mime_data.hasText():
+            text = mime_data.text()
+            rows = text.strip().split('\n')
+            current_row = self.currentRow()
+            current_col = self.currentColumn()
+
+            for i, row_text in enumerate(rows):
+                cols = row_text.split('\t')
+                for j, col_text in enumerate(cols):
+                    row = current_row + i
+                    col = current_col + j
+
+                    if row < self.rowCount() and col < self.columnCount():
+                        item = QTableWidgetItem(col_text)
+                        self.setItem(row, col, item)
+                    else:
+                        # Pum pum pum...
+                        pass  # Here, we choose to ignore the extra data (you can modify it to your need).
+                        break
+
     def keyPressEvent(self, event):
         """Обрабатывает нажатия клавиш, в частности Ctrl+C для копирования."""
         if event.matches(QKeySequence.Copy):  # Проверяем, что нажата комбинация Ctrl+C

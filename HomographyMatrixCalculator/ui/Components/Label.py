@@ -11,11 +11,14 @@ from PySide6.QtCore import Qt
 from typing import *
 from PySide6.QtWidgets import QApplication, QLabel, QWidget, QFileDialog
 
+import sys
+
 
 class LabelImageVisualize(QLabel):
     def __init__(self, parent=None, image: np.array = None, text_default: str = ""):
         super().__init__(parent)
         self._image = image
+        self._last_pixmap = None
         self._default_text = text_default  # Добавлено поле для текста по умолчанию
         self.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
@@ -24,9 +27,13 @@ class LabelImageVisualize(QLabel):
         else:
             self.setText(self._default_text)  # Устанавливаем текст по умолчанию, если изображения нет
 
+    def resizeEvent(self, event):
+        if self._default_text is None and self._last_pixmap is not None:
+            self.setPixmap(self._last_pixmap.scaled(self.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation))
 
     def update_image(self, image: np.array) -> None:
         self._image = image.copy()
+        self._default_text = None
 
         if image.dtype != np.uint8:
             image = (image * 255).astype(np.uint8)
@@ -35,6 +42,7 @@ class LabelImageVisualize(QLabel):
         bytes_per_line = 3 * width
         q_image = QImage(image.data, width, height, bytes_per_line, QImage.Format_RGB888).rgbSwapped()
         pixmap = QPixmap.fromImage(q_image)
+        self._last_pixmap = pixmap
         self._update_pixmap(pixmap)
 
 
