@@ -72,13 +72,18 @@ def calculate_reprojection_errors(H1, H2, points):
 
 
 def plot_reprojection_errors(errors, points):
-    """Создает график ошибок репроекции."""
+    """Создает график ошибок репроекции, включая среднюю ошибку."""
     fig, ax = plt.subplots()
     sc = ax.scatter(points[:, 0], points[:, 1], c=errors, cmap='viridis')
     fig.colorbar(sc, label='Ошибка репроекции')
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
     ax.set_title('Ошибки репроекции')
+
+    # Вычисляем и добавляем среднюю ошибку
+    mean_error = np.mean(errors)
+    ax.axhline(mean_error, color='red', linestyle='--', label=f'Средняя ошибка: {mean_error:.2f}')
+    ax.legend()  # Обновляем легенду, чтобы включить среднюю ошибку
 
     canvas = FigureCanvas(fig)
     return canvas

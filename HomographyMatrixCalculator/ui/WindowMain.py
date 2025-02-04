@@ -308,7 +308,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         plot_pts_err = plot_errors_of_points(src_pts, dst_pts)
 
 
-        points = generate_points(img2.shape[1], img2.shape[0], 100)
+        points = generate_points(img2.shape[1], img2.shape[0], 150)
         errors = calculate_reprojection_errors(H, H_refer, points)
         plot_reprojection_err = plot_reprojection_errors(errors, points)
 
