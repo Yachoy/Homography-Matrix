@@ -57,8 +57,9 @@ class LabelImageVisualize(QLabel):
         return self._image.copy()
 
 class LabelDropFile(LabelImageVisualize):
+    #TODO extend types of files here
     def __init__(self, text_default: str = "", allowed_ext: Tuple[str] = (".jpg", ".png", ".bmp", ".jpeg", ".gif")):
-        super().__init__(text_default=text_default)  # Передаем text_default в родительский конструктор
+        super().__init__(text_default=text_default)
         self._allowed_exts: Tuple[str] = allowed_ext
         self._last_path: Optional[str] = None
         self.setAcceptDrops(True)
@@ -81,7 +82,7 @@ class LabelDropFile(LabelImageVisualize):
                 file_path = urls[0].toLocalFile()
                 try:
                     self.setText("")
-                    if not self.process_path_file(file_path):  # Исправлено имя метода
+                    if not self.process_path_file(file_path):
                         print("Drop file failed")
                         event.ignore()
                         return
@@ -99,7 +100,7 @@ class LabelDropFile(LabelImageVisualize):
             self,
             "Выбрать изображение",  # Заголовок диалога
             "",  # Директория по умолчанию (пустая - текущая)
-            "Изображения (*.png *.jpg *.bmp *.jpeg *.gif);;Все файлы (*)"  # Фильтр файлов
+            f"Изображения ({' '.join(["*"+i for i in self._allowed_exts])});;Все файлы (*)"  # Фильтр файлов
         )
 
         if file_path:  # Если пользователь выбрал файл
@@ -114,7 +115,7 @@ class LabelDropFile(LabelImageVisualize):
 
     @staticmethod
     def _check_file_extension(file_path, allowed_extensions) -> bool:
-        _, ext = os.path.splitext(file_path.lower())  # Получаем расширение файла и приводим к нижнему регистру
+        _, ext = os.path.splitext(file_path.lower())
         return ext in allowed_extensions
 
     def process_path_file(self, path_file: str) -> bool:
@@ -129,6 +130,7 @@ class LabelDropFile(LabelImageVisualize):
             image = Image.open(path_file) # Используем PIL для загрузки
             image_np = np.array(image)
 
+            #TODO can occur a problem with formating image
             # Конвертируем в RGB, если нужно
             if image_np.ndim == 2: # Если изображение grayscale
                 image_np = np.stack([image_np]*3, axis=-1) # Преобразуем в RGB
@@ -142,7 +144,6 @@ class LabelDropFile(LabelImageVisualize):
         except Exception as e:
             print(f"Error loading image: {e}")
             return False
-
 
     def get_last_path(self) -> Optional[str]:
         return self._last_path

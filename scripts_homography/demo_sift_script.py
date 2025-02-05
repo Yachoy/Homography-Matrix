@@ -7,6 +7,8 @@ from HomographyMatrixCalculator.backend.backend import PrototypeHomographyCompos
 
 class SIFT(PrototypeHomographyComposite):
     def get_kp_des(self, img):
+        #TODO GRAY FORMAT SIFT INPUT
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sift = cv2.SIFT_create(
             nfeatures=1000,  # Максимальное кол-во (0 - неограничено)
             nOctaveLayers=5,  # октавы (по умолчанию 3)

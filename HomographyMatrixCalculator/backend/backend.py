@@ -52,8 +52,8 @@ def plot_errors_of_points(src_pts, dst_pts):
 
 def generate_points(image_width, image_height, num_points):
     """Генерирует N точек, равномерно распределенных по изображению."""
-    x = np.random.randint(0, image_width, num_points)
-    y = np.random.randint(0, image_height, num_points)
+    x = np.random.uniform(0, image_width, num_points)
+    y = np.random.uniform(0, image_height, num_points)
     return np.column_stack((x, y))
 
 

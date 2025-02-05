@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1033</width>
+    <width>976</width>
     <height>950</height>
    </rect>
   </property>
@@ -203,11 +203,14 @@
                </widget>
               </item>
               <item>
-               <widget class="QCheckBox" name="checkBoxAttempts">
+               <widget class="QLabel" name="label_3">
                 <property name="text">
-                 <string>Save Attempts Graphics</string>
+                 <string>Number of coverage points:</string>
                 </property>
                </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinBox"/>
               </item>
               <item>
                <widget class="QCheckBox" name="checkBoxReference">

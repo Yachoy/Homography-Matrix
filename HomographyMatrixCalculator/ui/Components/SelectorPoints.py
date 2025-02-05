@@ -92,7 +92,7 @@ class ImageWidget(QGraphicsView):
                 text_offset = QPoint(5, -5)  # Adjust as needed
 
                 # Draw the ellipse (fixed size)
-                radius = 3 # Or whatever size you want
+                radius = 3
                 painter.drawEllipse(view_point, radius, radius)  # Fixed-size ellipse
                 painter.drawText(view_point + text_offset, str(i + 1)) # No need to change the text position here since we are already working in viewport space
 

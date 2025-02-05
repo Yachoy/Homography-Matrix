@@ -48,9 +48,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, root_path):
         self.root_path = root_path
         super().__init__()
-        self._result_win = QWidget() #window visualise auto test
+
+        self._result_win = QWidget() #window visualise auto test refer.
         self.calculator = CompositeHomographyCalculator()
         self.setupUi(self)
+
+        self.spinBox.setMaximum(10_000)
 
         # remake labels to drag-drop-vis labels -------------
         self.verticalLayout_3.removeWidget(self.label)
@@ -228,7 +231,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.homography_fixed_image_label.update_image(img)
 
         except Exception as e:
-            print("While executing script cauth a error: ",e)
+            print("While executing script catch a error: ",e)
             print("Full error:")
             traceback.print_exc()
 
@@ -259,8 +262,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def _auto_test(self):
         is_need_to_use_reference =  self.checkBoxReference.isChecked()
-        is_need_to_save_attempts = self.checkBoxAttempts.isChecked()
-
         img1, img2 = None, None
         if self.calculator.calculator is None:
             return self.show_warning_message(self, message="You didn't choose any scripts for calculating!")
@@ -306,9 +307,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #generate plots
         # file_plot_path = f"{self.root_path}/testing/{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}.png"
         plot_pts_err = plot_errors_of_points(src_pts, dst_pts)
-
-
-        points = generate_points(img2.shape[1], img2.shape[0], 150)
+        num_points = 100
+        try:
+            num_points = int(self.spinBox.value())
+            if num_points < 0:
+                raise
+        except:
+            self.show_warning_message("Spin box value for number of coverage points is invalid. Positive. Not float. Not text. pum pum pum")
+            return
+        points = generate_points(img2.shape[1], img2.shape[0], num_points)
         errors = calculate_reprojection_errors(H, H_refer, points)
         plot_reprojection_err = plot_reprojection_errors(errors, points)
 

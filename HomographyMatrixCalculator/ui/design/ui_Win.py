@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'WinXzXMlN.ui'
+## Form generated from reading UI file 'WinfIuUNZ.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.0
+## Created by: Qt User Interface Compiler version 6.8.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -17,14 +17,14 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QHBoxLayout, QHeaderView,
     QLabel, QMainWindow, QPushButton, QSizePolicy,
-    QSpacerItem, QTableWidget, QTableWidgetItem, QVBoxLayout,
-    QWidget)
+    QSpacerItem, QSpinBox, QTableWidget, QTableWidgetItem,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1033, 950)
+        MainWindow.resize(976, 950)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_2 = QVBoxLayout(self.centralwidget)
@@ -152,10 +152,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.label_8)
 
-        self.checkBoxAttempts = QCheckBox(self.centralwidget)
-        self.checkBoxAttempts.setObjectName(u"checkBoxAttempts")
+        self.label_3 = QLabel(self.centralwidget)
+        self.label_3.setObjectName(u"label_3")
 
-        self.verticalLayout_8.addWidget(self.checkBoxAttempts)
+        self.verticalLayout_8.addWidget(self.label_3)
+
+        self.spinBox = QSpinBox(self.centralwidget)
+        self.spinBox.setObjectName(u"spinBox")
+
+        self.verticalLayout_8.addWidget(self.spinBox)
 
         self.checkBoxReference = QCheckBox(self.centralwidget)
         self.checkBoxReference.setObjectName(u"checkBoxReference")
@@ -229,7 +234,7 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem1 = self.tableWidget_2.horizontalHeaderItem(0)
         ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Refer", None));
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Test Matrix Via Points distance", None))
-        self.checkBoxAttempts.setText(QCoreApplication.translate("MainWindow", u"Save Attempts Graphics", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Number of coverage points:", None))
         self.checkBoxReference.setText(QCoreApplication.translate("MainWindow", u"Use Reference Homography", None))
         self.startAutoTestBtn.setText(QCoreApplication.translate("MainWindow", u"Start Testing", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Homography applyed img...", None))
