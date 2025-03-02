@@ -17,5 +17,4 @@ def main():
     win = MainWindow(root_path)
     win.show()
     code = app.exec()
-
-    exit(code)
+    

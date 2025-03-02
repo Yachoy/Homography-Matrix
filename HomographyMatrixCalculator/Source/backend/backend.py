@@ -127,7 +127,7 @@ class CompositeHomographyCalculator:
         spec = importlib.util.spec_from_file_location(module_name, self.path_to_script)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-
+        
         for name, obj in inspect.getmembers(module):
             if inspect.isclass(obj) and issubclass(obj, PrototypeHomographyComposite) and obj != PrototypeHomographyComposite:
                 try:
