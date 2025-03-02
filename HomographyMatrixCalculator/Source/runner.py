@@ -17,4 +17,7 @@ def main():
     win = MainWindow(root_path)
     win.show()
     code = app.exec()
+<<<<<<< HEAD
     
+=======
+>>>>>>> cb476ba2a37ae22a086591e9aa7b157ba431fff0
