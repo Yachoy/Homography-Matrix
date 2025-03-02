@@ -27,18 +27,18 @@ from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
 
-from HomographyMatrixCalculator.ui.design.ui_Win import Ui_MainWindow
-from HomographyMatrixCalculator.ui.Components.Label import LabelDropFile, LabelImageVisualize
-from HomographyMatrixCalculator.ui.Components.VisualiseDuoImages import ImageViewer
-from HomographyMatrixCalculator.ui.Components.Table import TableWidgetCopy
-from HomographyMatrixCalculator.backend.backend import (
+from .design.ui_Win import Ui_MainWindow
+from .Components.Label import LabelDropFile, LabelImageVisualize
+from .Components.VisualiseDuoImages import ImageViewer
+from .Components.Table import TableWidgetCopy
+from ..backend.backend import (
     CompositeHomographyCalculator,
     plot_errors_of_points,
     plot_reprojection_errors,
     generate_points,
     calculate_reprojection_errors
 )
-from HomographyMatrixCalculator.ui.Components.SelectorPoints import SelectPointsWindow
+from .Components.SelectorPoints import SelectPointsWindow
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):

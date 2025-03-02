@@ -1,8 +1,9 @@
 material/
 testing/
-#.idea/
-#.idea/misc.xml
-#.idea/workspace.xml
+HomographyMatrixCalculator/Source/testing
+.idea/
+.idea/misc.xml
+.idea/workspace.xml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
