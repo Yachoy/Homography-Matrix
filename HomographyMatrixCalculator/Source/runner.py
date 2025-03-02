@@ -1,5 +1,4 @@
 import os
-from sys import exit
 os.environ['QT_API'] = 'pyside6'
 
 import pathlib
@@ -18,5 +17,3 @@ def main():
     win = MainWindow(root_path)
     win.show()
     code = app.exec()
-
-    exit(code)
