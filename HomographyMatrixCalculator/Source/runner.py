@@ -1,5 +1,5 @@
 import os
-from sys import argv, exit
+from sys import exit
 os.environ['QT_API'] = 'pyside6'
 
 import pathlib
